@@ -62,7 +62,25 @@ function App() {
 
   return (
     <>
-     
+      <UserAuthContextProvider>
+      <Navbar />
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Home
+                fetchListings={fetchListings}
+                listings={listings}
+                loading={loading}
+              />
+            }
+          />
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/saved-listings' element={<ProtectedRoute><SavedListings/></ProtectedRoute>} />
+          <Route path='/account' element={<ProtectedRoute><Account/></ProtectedRoute>} />
+        </Routes>
+      </UserAuthContextProvider>
       <Footer />
     </>
   );
